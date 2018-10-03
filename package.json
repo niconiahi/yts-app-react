@@ -2,6 +2,7 @@
   "name": "yts-app-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://niconiahi.github.io/yts-app-react",
   "dependencies": {
     "gh-pages": "^2.0.0",
     "react": "^16.5.2",
@@ -11,7 +12,6 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "homepage": "https://niconiahi.github.io/yts-app-react",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
