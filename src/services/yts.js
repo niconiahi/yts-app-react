@@ -8,9 +8,9 @@ const yts = {
     return json.data.movies;
   },
 
-  search: async (criteria, quality, genre) => {
+  search: async (criteria, quality, genre, rating) => {
     const res = await fetch(
-      `${url}?query_term=${criteria}&movie_quality=${quality}&genre=${genre}`
+      `${url}?query_term=${criteria}&quality=${quality}&genre=${genre}&minimum_rating=${rating}`
     );
     const json = await res.json();
 

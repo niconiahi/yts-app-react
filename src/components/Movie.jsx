@@ -1,18 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, qualitySelected }) => {
   return (
     <Container>
       <Overlay>
         <h2 className="title">{movie.title}</h2>
         <span className="year">{movie.year}</span>
+        <p className="imdb">IMDb</p>
+        <span className="rating">{`${movie.rating} / 10`}</span>
         <ul className="torrents">
-          {movie.torrents.map(torrent => (
-            <li key={torrent.hash} className="torrent">
-              <a href={torrent.url}>{torrent.quality}</a>
-            </li>
-          ))}
+          {movie.torrents
+            .filter(torrent => torrent.quality === qualitySelected)
+            .map(torrent => (
+              <li key={torrent.hash} className="torrent">
+                <a href={torrent.url}>{torrent.quality}</a>
+              </li>
+            ))}
         </ul>
       </Overlay>
       <Banner
@@ -44,9 +48,30 @@ const Overlay = styled.div`
     border: 1px solid black;
   }
 
+  .imdb {
+    position: absolute;
+    bottom: 38px;
+    left: 4px;
+    background: orange;
+    color: black;
+    padding: 1px 2px;
+    border: 1px solid black;
+  }
+
+  .rating {
+    position: absolute;
+    bottom: 28px;
+    left: 4px;
+    background: orange;
+    color: black;
+    padding: 1px 2px;
+    border: 1px solid black;
+  }
+
   .torrents {
     position: absolute;
     right: 0;
+    bottom: 8px;
     color: black;
     font-size: 16px;
     list-style: none;

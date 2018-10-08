@@ -5,6 +5,8 @@
   "homepage": "https://niconiahi.github.io/yts-app-react",
   "dependencies": {
     "gh-pages": "^2.0.0",
+    "node": "^10.11.0",
+    "puppeteer": "^1.9.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "1.1.5",

@@ -11,7 +11,9 @@ class App extends Component {
     status: "pending",
     criteria: "",
     quality: "",
-    genre: ""
+    qualitySelected: "",
+    genre: "",
+    rating: 0
   };
 
   async componentDidMount() {
@@ -22,21 +24,25 @@ class App extends Component {
   }
 
   handleSubmit = async e => {
-    const { criteria, quality, genre } = this.state;
+    const { criteria, quality, genre, rating } = this.state;
 
     e.preventDefault();
 
     this.setState({ status: "pending" });
 
     this.setState({
-      movies: await yts.search(criteria, quality, genre),
+      qualitySelected: quality,
+      movies: await yts.search(criteria, quality, genre, rating),
       status: "resolved"
     });
   };
 
   handleCriteria = criteria => {
-    console.log(criteria);
     this.setState({ criteria });
+  };
+
+  handleRating = rating => {
+    this.setState({ rating });
   };
 
   handleQuality = quality => {
@@ -48,7 +54,14 @@ class App extends Component {
   };
 
   render() {
-    const { movies, status, criteria, quality, genre } = this.state;
+    const {
+      movies,
+      status,
+      criteria,
+      quality,
+      genre,
+      qualitySelected
+    } = this.state;
 
     return (
       <div className="App">
@@ -60,10 +73,13 @@ class App extends Component {
           onQuality={this.handleQuality}
           onGenre={this.handleGenre}
           onSubmit={this.handleSubmit}
+          onRating={this.handleRating}
         />
         <Main>
           {status === "pending" && <p>Loading...</p>}
-          {status !== "pending" && <Movies movies={movies} />}
+          {status !== "pending" && (
+            <Movies movies={movies} qualitySelected={qualitySelected} />
+          )}
         </Main>
       </div>
     );

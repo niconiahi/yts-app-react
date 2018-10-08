@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Movie from "./Movie";
 
-const Movies = ({ movies }) => {
+const Movies = ({ movies, qualitySelected }) => {
   return (
     <Container>
       {movies.map(movie => (
-        <Movie key={movie.id} movie={movie} />
+        <Movie key={movie.id} movie={movie} qualitySelected={qualitySelected} />
       ))}
     </Container>
   );
