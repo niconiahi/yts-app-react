@@ -1,4 +1,4 @@
-const url = "https://yts.am/api/v2/list_movies.json";
+const url = "https://yts.gs/api/v2/list_movies.json";
 
 const yts = {
   list: async () => {
