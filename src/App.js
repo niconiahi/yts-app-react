@@ -4,6 +4,7 @@ import yts from "./services/yts";
 import Movies from "./components/Movies";
 import Header from "./components/Header";
 import styled from "styled-components";
+import list from "./services/listRaw";
 
 class App extends Component {
   state = {
@@ -17,10 +18,12 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({
-      movies: await yts.list(),
-      status: "resolved"
-    });
+    try {
+      const movies = await yts.list()
+      this.setState({ movies, status: 'resolved'})
+    } catch (error) {
+      this.setState({movies: list, status: 'resolved'})
+    }
   }
 
   handleSubmit = async e => {
@@ -37,21 +40,7 @@ class App extends Component {
     });
   };
 
-  handleCriteria = criteria => {
-    this.setState({ criteria });
-  };
-
-  handleRating = rating => {
-    this.setState({ rating });
-  };
-
-  handleQuality = quality => {
-    this.setState({ quality });
-  };
-
-  handleGenre = genre => {
-    this.setState({ genre });
-  };
+  handleChange = (key, value) => this.setState({ [key]: value })
 
   render() {
     const {
@@ -69,15 +58,15 @@ class App extends Component {
           criteria={criteria}
           quality={quality}
           genre={genre}
-          onCriteria={this.handleCriteria}
-          onQuality={this.handleQuality}
-          onGenre={this.handleGenre}
+          onCriteria={value => this.handleChange('criteria',value)}
+          onQuality={value => this.handleChange('quality',value)}
+          onGenre={value => this.handleChange('genre',value)}
           onSubmit={this.handleSubmit}
-          onRating={this.handleRating}
+          onRating={value => this.handleChange('rating',value)}
         />
         <Main>
           {status === "pending" && <p>Loading...</p>}
-          {status !== "pending" && (
+          {status !== "pending" && movies && (
             <Movies movies={movies} qualitySelected={qualitySelected} />
           )}
         </Main>

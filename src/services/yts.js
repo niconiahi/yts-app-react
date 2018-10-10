@@ -1,3 +1,4 @@
+import list from "./listRaw";
 const url = "https://crossorig.in/https://yts.am/api/v2/list_movies.json";
 
 const yts = {
@@ -8,7 +9,8 @@ const yts = {
 
       return json.data.movies;
     } catch (error) {
-      console.log(error);
+      console.warn(error);
+      return [...list];
     }
   },
 
