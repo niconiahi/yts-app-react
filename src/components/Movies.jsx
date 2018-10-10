@@ -2,15 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Movie from "./Movie";
 
-const Movies = ({ movies, qualitySelected }) => {
-  return (
-    <Container>
-      {movies.map(movie => (
-        <Movie key={movie.id} movie={movie} qualitySelected={qualitySelected} />
-      ))}
-    </Container>
-  );
-};
+const Movies = ({ movies, qualitySelected }) => (
+  <Container>
+    {movies.length > 0 && movies.map(movie => (
+      <Movie key={movie.id} movie={movie} qualitySelected={qualitySelected} />
+    ))}
+  </Container>
+);
 
 export default Movies;
 
