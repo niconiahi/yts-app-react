@@ -11,7 +11,12 @@ const Movie = ({ movie, qualitySelected }) => {
         <span className="rating">{`${movie.rating} / 10`}</span>
         <ul className="torrents">
           {movie.torrents
-            .filter(torrent => torrent.quality === qualitySelected)
+            .filter(
+              torrent =>
+                qualitySelected === "Quality"
+                  ? torrent
+                  : torrent.quality === qualitySelected
+            )
             .map(torrent => (
               <li key={torrent.hash} className="torrent">
                 <a href={torrent.url}>{torrent.quality}</a>

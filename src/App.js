@@ -11,7 +11,7 @@ class App extends Component {
     status: "pending",
     criteria: "",
     quality: "",
-    qualitySelected: "",
+    qualitySelected: "Quality",
     genre: "",
     rating: 0
   };
