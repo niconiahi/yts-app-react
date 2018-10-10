@@ -5,12 +5,12 @@ const Movie = ({ movie, qualitySelected }) => {
   return (
     <Container>
       <Overlay>
-        <h2 className="title">{movie.title}</h2>
-        <span className="year">{movie.year}</span>
+        {movie.title && <h2 className="title">{movie.title}</h2>}
+        {movie.year && <span className="year">{movie.year}</span>}
         <p className="imdb">IMDb</p>
-        <span className="rating">{`${movie.rating} / 10`}</span>
+        {movie.rating && <span className="rating">{`${movie.rating} / 10`}</span>}
         <ul className="torrents">
-          {movie.torrents
+          {movie.torrents && movie.torrents
             .filter(torrent => torrent.quality === qualitySelected)
             .map(torrent => (
               <li key={torrent.hash} className="torrent">
@@ -19,11 +19,11 @@ const Movie = ({ movie, qualitySelected }) => {
             ))}
         </ul>
       </Overlay>
-      <Banner
+      {movie.medium_cover_image && <Banner
         className="image"
         src={movie.medium_cover_image}
         alt="Movie banner"
-      />
+      />}
     </Container>
   );
 };
