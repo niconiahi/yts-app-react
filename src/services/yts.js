@@ -6,7 +6,7 @@ const yts = {
     try {
       const res = await fetch(url);
       const json = await res.json();
-
+      console.log(json.data.movies);
       return json.data.movies;
     } catch (error) {
       console.warn(error);

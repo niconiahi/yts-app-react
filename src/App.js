@@ -4,7 +4,7 @@ import yts from "./services/yts";
 import Movies from "./components/Movies";
 import Header from "./components/Header";
 import styled from "styled-components";
-import list from "./services/listRaw";
+// import list from "./services/listRaw";
 
 class App extends Component {
   state = {
@@ -19,10 +19,10 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const movies = await yts.list()
-      this.setState({ movies, status: 'resolved'})
+      const movies = await yts.list();
+      this.setState({ movies, status: "resolved" });
     } catch (error) {
-      this.setState({movies: list, status: 'resolved'})
+      this.setState({ status: "error" });
     }
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
     });
   };
 
-  handleChange = (key, value) => this.setState({ [key]: value })
+  handleChange = (key, value) => this.setState({ [key]: value });
 
   render() {
     const {
@@ -58,17 +58,18 @@ class App extends Component {
           criteria={criteria}
           quality={quality}
           genre={genre}
-          onCriteria={value => this.handleChange('criteria',value)}
-          onQuality={value => this.handleChange('quality',value)}
-          onGenre={value => this.handleChange('genre',value)}
+          onCriteria={value => this.handleChange("criteria", value)}
+          onQuality={value => this.handleChange("quality", value)}
+          onGenre={value => this.handleChange("genre", value)}
           onSubmit={this.handleSubmit}
-          onRating={value => this.handleChange('rating',value)}
+          onRating={value => this.handleChange("rating", value)}
         />
         <Main>
           {status === "pending" && <p>Loading...</p>}
-          {status !== "pending" && movies && (
-            <Movies movies={movies} qualitySelected={qualitySelected} />
-          )}
+          {status !== "pending" &&
+            movies && (
+              <Movies movies={movies} qualitySelected={qualitySelected} />
+            )}
         </Main>
       </div>
     );

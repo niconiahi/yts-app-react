@@ -20,7 +20,7 @@ const Header = ({
         onChange={e => onCriteria(e.target.value)}
       />
       <select value={quality} onChange={e => onQuality(e.target.value)}>
-        <option value="">Quality</option>
+        <option value="Quality">Quality</option>
         <option value="720p">720p</option>
         <option value="1080p">1080p</option>
         <option value="3D">3D</option>
