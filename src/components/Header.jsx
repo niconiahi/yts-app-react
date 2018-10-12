@@ -64,17 +64,17 @@ const Header = ({
 
 const Container = styled.form`
   display: grid;
-  grid-template-columns: 5% repeat(3, 1fr) 5%;
-  grid-template-row: 10% repeat(3, 1fr) 10%;
+  grid-template-columns: 20% repeat(3, 1fr) 0.5fr 20%;
+  grid-template-row: 1fr 1fr;
   background-color: black;
   padding: 1rem;
   border: 0.15em dashed yellow;
   align-items: center;
-  grid-gap: 4px;
+  grid-gap: 8px;
 
   .text-input {
     grid-row: 1 / 2;
-    grid-column: 2 / 5;
+    grid-column: 2 / 6;
   }
 
   .sel1 {
@@ -93,11 +93,38 @@ const Container = styled.form`
   }
 
   .search-btn {
-    grid-row: 3 / 4;
-    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+    grid-column: 5 / 6;
   }
 
-  @media (min-width: 425px) {
+  @media (max-width: 650px) {
+    grid-template-columns: 5% repeat(3, 1fr) 5%;
+    grid-template-row: 10% repeat(3, 1fr) 10%;
+    grid-gap: 4px;
+    .text-input {
+      grid-row: 1 / 2;
+      grid-column: 2 / 5;
+    }
+
+    .sel1 {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+    }
+
+    .sel2 {
+      grid-row: 2 / 3;
+      grid-column: 3 / 4;
+    }
+
+    .sel3 {
+      grid-row: 2 / 3;
+      grid-column: 4 / 5;
+    }
+
+    .search-btn {
+      grid-row: 3 / 4;
+      grid-column: 2 / 5;
+    }
   }
 `;
 
